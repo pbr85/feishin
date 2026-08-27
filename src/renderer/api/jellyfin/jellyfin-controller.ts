@@ -61,9 +61,7 @@ const getNowPlayingQueueWindow = (): undefined | { Id: string }[] => {
 
         const window = playOrder
             .slice(index, index + QUEUE_REPORT_WINDOW)
-            .map((uniqueId) => songs[uniqueId]?.id)
-            .filter((id): id is string => Boolean(id))
-            .map((id) => ({ Id: id }));
+            .flatMap((uniqueId) => (songs[uniqueId] ? [{ Id: songs[uniqueId].id }] : []));
 
         return window.length > 1 ? window : undefined;
     } catch {

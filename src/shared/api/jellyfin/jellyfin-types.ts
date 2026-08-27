@@ -722,9 +722,6 @@ const scrobbleParameters = z.object({
     EventName: z.string().optional(),
     IsPaused: z.boolean().optional(),
     ItemId: z.string(),
-    // Windowed play-order queue (current + upcoming) so server-side consumers
-    // (session UI, prefetch plugins) can see what plays next; full queues degrade
-    // the /Sessions endpoint (jellyfin/jellyfin#13377), hence the window
     NowPlayingQueue: z
         .array(
             z.object({
